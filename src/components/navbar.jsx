@@ -5,7 +5,7 @@ import { getLoggedInUser } from "../features/authActions";
 
 function Navbar() {
   const dispatch = useDispatch()
-  const { user, auth } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
   useEffect(() => {
     dispatch(getLoggedInUser())
     console.log("user checked")
