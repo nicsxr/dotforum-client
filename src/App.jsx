@@ -7,6 +7,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import { AxiosInterceptor } from './api/api';
+import Registration from './pages/Registration';
 
 const darkTheme = createTheme({
   palette: {
@@ -26,6 +27,7 @@ function App() {
                   <Route path="/" element={<Home />}/>
                   <Route path="/post/:id" element={<Post />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Registration />} />
                 </Routes>
               </div>
             </AxiosInterceptor>

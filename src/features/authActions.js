@@ -2,8 +2,8 @@ import { login } from '../services/auth.service'
 import { getUser } from '../services/user.service'
 import { userLoaded, userRemoved } from './authSlice';
 
-export const userLogin = (username, password) => async dispatch => {
-  await login(username, password );
+export const userLoggedIn = () => async dispatch => {
+  console.log("DISPATCH 401")
   const { data } = await getUser()
   console.log(data)
   dispatch(userLoaded(data));

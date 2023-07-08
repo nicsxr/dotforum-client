@@ -10,10 +10,13 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { userLogin } from '../features/authActions';
+import { userLoggedIn } from '../features/authActions';
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../services/auth.service';
+import { Alert } from '@mui/material';
+import { getUser } from '../services/user.service';
 
 
 
@@ -22,22 +25,36 @@ export default function SignIn() {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
   const navigate = useNavigate()
-
+  const [message, setMessage] = useState('')
   useEffect(() => {
     if (user) {
       navigate('/')
     }
   }, [navigate, user])
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     username: data.get('username'),
+  //     password: data.get('password'),
+  //   });
+  //   dispatch(userLogin(data.get('username'), data.get('password')))
+  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get('username'),
-      password: data.get('password'),
-    });
-    dispatch(userLogin(data.get('username'), data.get('password')))
-  };
+    await login(data.get('username'), data.get('password')).then((res) => {
+        if(res.status.code == 1){
+          dispatch(userLoggedIn())
+          navigate('/')
+        } 
+        else {setMessage(res.status.message)}
+    }).catch((err) => {
+        console.log(err)
+        setMessage(err.message)
+    })
+};
 
   return (
       <Container component="main" maxWidth="xs">
@@ -57,6 +74,9 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            {message && 
+                <Alert severity="error" className='mb-3'>{message}</Alert>
+            }
             <TextField
               margin="normal"
               required
@@ -66,7 +86,7 @@ export default function SignIn() {
               name="username"
               autoComplete="username"
               autoFocus
-              value="string"
+              defaultValue="string"
             />
             <TextField
               margin="normal"
@@ -77,7 +97,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              value="string"
+              defaultValue="string"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -98,7 +118,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

@@ -1,18 +1,21 @@
 import {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
-import { getPostById } from '../services/post.service';
+import { getCommentsByPostId, getPostById } from '../services/post.service';
 import { VoteStatus } from '../utils/enums'
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ForumIcon from '@mui/icons-material/Forum';
+import CommentsList from '../components/CommentsList';
+import CreateComment from '../components/CreateComment';
+import { useSelector } from 'react-redux';
 
 function Post() {
     const [post, setPost] = useState(null)
 
     let { id } = useParams()
-
+    const { user } = useSelector((state) => state.auth)
     useEffect(() => {
         getPostById(id).then((res) => {
             setPost(res.data)
@@ -68,7 +71,16 @@ function Post() {
                 </button>
             </div>
           </div>
-        </div>}
+        </div>
+        }
+        {user && post && <CreateComment postId={id} isMainComment={true}/>}
+        
+
+
+        {/* COMMENTS */}
+        <div>
+          <CommentsList postId={id}/>
+        </div>
       </>
     )
 }

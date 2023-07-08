@@ -22,8 +22,22 @@ export async function getUser(){
         const response = await axios.get(`/user`, {
                 credentials: 'include'
             })
-        return response
+        return response.data
     } catch (error) {
         return error
+    }
+}
+
+export async function registerUser(username, password){
+    try{
+        const response = await axios.post(`/user/register`,{
+            username,
+            password
+        } ,{
+            credentials: 'include'
+        })
+        return response.data
+    }catch (error) {
+        return Promise.reject(error)
     }
 }

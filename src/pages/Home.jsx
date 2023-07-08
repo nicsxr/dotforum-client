@@ -23,6 +23,14 @@ const Home = () => {
     })
   }
   
+  async function refreshHome(){
+    getPublicHome(1).then((res) => {
+      setPosts([...res.data])
+      setPage(2)
+      if(res.data.length == 0) setHasMore(false)
+    })
+  }
+  
   return (
     <div>
       {user && <CreatePost/>}
@@ -37,7 +45,7 @@ const Home = () => {
           </p>
         }
         // below props only if you need pull down functionality
-        refreshFunction={fetchHome}
+        refreshFunction={refreshHome}
         pullDownToRefresh
         pullDownToRefreshThreshold={50}
         pullDownToRefreshContent={
