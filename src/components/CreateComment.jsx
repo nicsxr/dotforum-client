@@ -37,7 +37,7 @@ const CreateComment = (props) => {
                 }
                 <div className='p-5 w-full'>
                     <div className='flex'>
-                        <TextField name="body" required sx={{marginRight: 1}} className='w-full' size='medium' id="filled-multiline-static" label="Comment" multiline maxRows={3}/>
+                        <TextField name="body" required sx={{marginRight: 1}} className='w-full' size='small' id="filled-multiline-static" label="Comment" multiline maxRows={3}/>
                         <Button type='submit' size='small' variant="contained" endIcon={<SendIcon />}>Comment</Button>
                     </div>
                 </div>

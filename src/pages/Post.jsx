@@ -78,6 +78,7 @@ function Post() {
 
 
         {/* COMMENTS */}
+
         <div>
           <CommentsList postId={id}/>
         </div>

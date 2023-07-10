@@ -12,9 +12,9 @@ export async function getPostById(id){
     }
 }
 
-export async function getCommentsByPostId(id){
+export async function getCommentsByPostId(id, page=1){
     try {
-        const response = await axios.get(`/post/comments?postId=${id}`, {
+        const response = await axios.get(`/post/comments?postId=${id}&page=${page}&pageSize=10`, {
             credentials: 'include'
         })
         return response.data
