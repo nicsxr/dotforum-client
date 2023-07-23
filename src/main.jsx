@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 
 axios.defaults.withCredentials = true
-// axios.defaults.baseURL = 'https://localhost:7177/api' //HTTPS
-axios.defaults.baseURL = 'http://192.168.0.161:5023/api' //HTTP
+axios.defaults.baseURL = 'https://localhost:7177/api' //HTTPS
+// axios.defaults.baseURL = 'http://192.168.0.161:5023/api' //HTTP

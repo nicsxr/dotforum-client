@@ -34,6 +34,7 @@ export async function votePost(id, vote){
         return Promise.reject(error)
     }
 }
+
 export async function createPost(title, body, communityId){
     try {
         const response =  await axios.post(`/post`, {

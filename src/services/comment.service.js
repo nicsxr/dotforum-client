@@ -23,3 +23,15 @@ export async function getChildCommentsByCommentId(id, page=1, pageSize){
         return Promise.reject(error)
     }
 }
+
+export async function voteComment(id, vote){
+    try {
+        const response =  await axios.post(`/comment/vote`, {
+            commentId: id,
+            vote
+        }, {credentials: 'include'})
+        return response.data
+    } catch (error) {
+        return Promise.reject(error)
+    }
+}

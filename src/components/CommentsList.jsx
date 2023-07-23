@@ -24,7 +24,7 @@ const CommentsList = (props) => {
         })
     }
     return (
-        <div className='p-4 xl:w-2/5 lg:w-2/3 md:w-2/3 w-11/12 m-auto mb-5 bg-slate-700 rounded-2xl min-h-screen'>
+        <div className='p-4 xl:w-2/5 lg:w-2/3 md:w-2/3 w-11/12 m-auto mb-5 bg-slate-700 rounded-2xl'> {/* min-h-full ????? */}
             <InfiniteScroll
                 dataLength={comments.length} //This is important field to render the next data
                 next={fetchPostComments}

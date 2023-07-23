@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Post from './pages/Post';
+import PostPage from './pages/PostPage';
 import Login from './pages/Login'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { store } from './store';
@@ -25,7 +25,7 @@ function App() {
                 <Navbar />
                 <Routes>
                   <Route path="/" element={<Home />}/>
-                  <Route path="/post/:id" element={<Post />} />
+                  <Route path="/post/:id" element={<PostPage />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Registration />} />
                 </Routes>

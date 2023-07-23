@@ -10,8 +10,9 @@ import ForumIcon from '@mui/icons-material/Forum';
 import CommentsList from '../components/CommentsList';
 import CreateComment from '../components/CreateComment';
 import { useSelector } from 'react-redux';
+import Post from '../components/Post';
 
-function Post() {
+function PostPage() {
     const [post, setPost] = useState(null)
 
     let { id } = useParams()
@@ -24,7 +25,11 @@ function Post() {
 
     return (
         <>
-        { post && <div className='p-4 xl:w-2/5 lg:w-2/3 md:w-2/3 w-11/12 m-auto mb-5 bg-slate-800 rounded-2xl'>
+
+        {post && <Post post={post}/>}
+
+
+        {/* { post && <div className='p-4 xl:w-2/5 lg:w-2/3 md:w-2/3 w-11/12 m-auto mb-5 bg-slate-800 rounded-2xl'>
           <div className='flex justify-between pr-5 pl-5 -mt-2'>
             <div>
               <h5 className='text-md font-normal tracking-tight text-gray-400 dark:text-white'>
@@ -72,7 +77,7 @@ function Post() {
             </div>
           </div>
         </div>
-        }
+        } */}
         {user && post && <CreateComment postId={id} isMainComment={true}/>}
         
 
@@ -86,4 +91,4 @@ function Post() {
     )
 }
 
-export default Post
+export default PostPage

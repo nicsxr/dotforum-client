@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CreateComment from './CreateComment';
-import { getChildCommentsByCommentId } from '../services/comment.service';
+import { getChildCommentsByCommentId, voteComment } from '../services/comment.service';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import { VoteStatus } from '../utils/enums';
 
 const Comment = (props) => {
-    const comment = props.comment
+    // const comment = props.comment
 
+    const [comment, setComment] = useState(props.comment)
     const { user } = useSelector((state) => state.auth)
     const [childComments, setChildComments] = useState(props.comment.childComments)
     const [showCreateComment, setShowCreateComment] = useState(false);
@@ -26,6 +32,19 @@ const Comment = (props) => {
             setPage(page + 1)
         })
     }
+
+    async function vote(userVote){
+        voteComment(comment.commentId, userVote).then((res) => {
+          console.log(res)
+        //   if(res.data){
+        //       const oldComm = comment
+        //       oldComm.vote = res.data.vote
+        //       oldComm.upvotes = res.data.upvotes
+        //       oldComm.downvotes = res.data.downvotes
+        //     }
+            setComment(res.data)
+        })
+    }
     return (
         <div className='dark:text-white relative'>
             {/* Side line-button */}
@@ -40,6 +59,25 @@ const Comment = (props) => {
                         {comment.text}
                     </div>
                 </div>
+                <div className='px-5 pl-3'>
+            <div className='flex justify-between items-center mt-3'>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white flex">
+                    <button onClick={() => vote(VoteStatus.Upvote)}>
+                        {comment.vote == VoteStatus.Upvote
+                            ? <ThumbUpIcon />
+                            : <ThumbUpOutlinedIcon />
+                        }
+                    </button>
+                    <span className="mr-3 ml-3">{comment.upvotes-comment.downvotes}</span>
+                    <button onClick={() => vote(VoteStatus.Downvote)}>
+                        {comment.vote == VoteStatus.Downvote
+                            ? <ThumbDownIcon />
+                            : <ThumbDownOutlinedIcon />
+                        }
+                    </button>
+                </div>
+            </div>
+          </div>
             </div>
 
             <div className='pr-5 mb z-10 left-0 w-full text-right'>
@@ -49,7 +87,6 @@ const Comment = (props) => {
             {user && <div className='w-full'>
                 {showCreateComment && <CreateComment parentCommentId={comment.commentId} isMainComment={false}/>}
             </div>}
-
 
             {/* Render child comments */}
             <div className={showChildComments ? "" : "hidden"}>
