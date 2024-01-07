@@ -38,7 +38,7 @@ const CreatePost = () => {
             }
                 <div className='p-5 w-full'>
                     <div className='flex'>
-                        <Autocomplete size='small' className='mb-2' value={selectedCommunity} onChange={(event, newValue) => { setSelectedCommunity(newValue); }} id="controllable-states-demo" options={communities} sx={{ width: 300 }} renderInput={(params) => <TextField {...params} label="Controllable" />} />
+                        <Autocomplete size='small' className='mb-2' value={selectedCommunity} onChange={(event, newValue) => { setSelectedCommunity(newValue); }} id="controllable-states-demo" options={communities} sx={{ width: 300 }} renderInput={(params) => <TextField {...params} label="Community" required />} />
                         {/* <Autocomplete size="small" className='mb-2' disablePortal id="combo-box-demo" options={communities} sx={{ width: 350, marginRight: 1 }} renderInput={(params) => <TextField {...params} label="Community" />} /> */}
                         <TextField name="title" size="small" className='w-full' required id="outlined-required" label="Post title"/>
                     </div>

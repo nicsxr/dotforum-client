@@ -52,8 +52,8 @@ const Comment = (props) => {
             && <button className={showChildComments ? `absolute bg-slate-800 ml-2 top-1 w-[2px] z-10` : "hidden"} style={{height: "calc(100% - 9px)"}} onClick={toggleShowChildComments}></button>}
             
 
-            <div className='bg-slate-800 mt-2 mr-2 ml-2 rounded-md flex justify-between' onClick={toggleShowChildComments}>
-                <div className='p-5'>
+            <div className='bg-slate-800 mt-2 mr-2 ml-2 rounded-md flex justify-between'>
+                <div className='p-5' onClick={toggleShowChildComments}>
                     <p className='text-gray-400'>u/{comment.username}</p>
                     <div>
                         {comment.text}
@@ -79,7 +79,7 @@ const Comment = (props) => {
             </div>
           </div>
             </div>
-
+            {comment.childCommentsCount > 0 && childComments.length == comment.childCommentsCount && <p className='justify-items-start ml-4' onClick={toggleShowChildComments}>{comment.childCommentsCount} comments</p> }
             <div className='pr-5 mb z-10 left-0 w-full text-right'>
                 {user && <button onClick={toggleCreateComment}>reply</button>}
             </div>
