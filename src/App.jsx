@@ -1,4 +1,3 @@
-import Navbar from './components/Navbar';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import PostPage from './pages/PostPage';
@@ -8,6 +7,7 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import { AxiosInterceptor } from './api/api';
 import Registration from './pages/Registration';
+import Navbar from './components/Navbar';
 
 const darkTheme = createTheme({
   palette: {
