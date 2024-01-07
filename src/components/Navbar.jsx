@@ -28,6 +28,7 @@ function Navbar() {
         <div>
           <ul className="flex items-center space-x-10 text-sm">
             <li><Link to="/" className="text-gray-400 hover:text-gray-100">Home</Link></li>
+            {user ? <li><Link to="/createcommunity" className="text-gray-400 hover:text-gray-100">Create Community</Link></li> : ""}
             <li><Link to="/about" className="text-gray-400 hover:text-gray-100">About Us</Link></li>
           </ul>
         </div>

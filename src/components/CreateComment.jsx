@@ -10,15 +10,6 @@ import { createComment } from '../services/comment.service';
 const CreateComment = (props) => {
     let navigate = useNavigate()
     const [message, setMessage] = useState('')
-    // const message = useRef('')
-    const [communities, setCommunities] = useState([])
-    const [selectedCommunity, setSelectedCommunity] = useState(null)
-    // const data = [{"label": "a"},{"label":"d"}]
-
-    useEffect(() => {
-
-        
-    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
