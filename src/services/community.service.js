@@ -11,11 +11,11 @@ export async function getFollowingCommunities(){
     }
 }
 
-export async function createCommunity(communityName, communityDescription){
+export async function createCommunity(name, description){
     try {
         const response =  await axios.post(`/community`, {
-            communityName,
-            communityDescription,
+            name,
+            description,
         }, {credentials: 'include'})
         return response.data
     } catch (error) {
