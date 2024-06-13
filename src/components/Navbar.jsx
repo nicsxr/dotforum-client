@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {Link, useNavigate} from 'react-router-dom';
 import { getLoggedInUser } from "../features/authActions";
 import { logout } from "../services/auth.service";
+import SearchBar from "./SearchBar";
 
 function Navbar() {
   const dispatch = useDispatch()
@@ -25,11 +26,12 @@ function Navbar() {
         <h1 className="font-semibold text-lg text-gray-200">
           <a href="/">🌐 DotForum</a>
         </h1>
+          <SearchBar/>
         <div>
           <ul className="flex items-center space-x-10 text-sm">
             <li><Link to="/" className="text-gray-400 hover:text-gray-100">Home</Link></li>
             {user ? <li><Link to="/createcommunity" className="text-gray-400 hover:text-gray-100">Create Community</Link></li> : ""}
-            <li><Link to="/about" className="text-gray-400 hover:text-gray-100">About Us</Link></li>
+            {/* <li><Link to="/about" className="text-gray-400 hover:text-gray-100">About Us</Link></li> */}
           </ul>
         </div>
         <div>

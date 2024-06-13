@@ -14,12 +14,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'https://dotforum.azurewebsites.net/api'
-  // axios.defaults.baseURL = 'https://localhost:7177/api' //HTTPS
-  // axios.defaults.baseURL = 'http://192.168.0.161:5023/api' //HTTP
-  console.log(proc)
-} else {
-  axios.defaults.baseURL = 'https://dotforum.azurewebsites.net/api'
-}
+axios.defaults.baseURL = process.env.API_URL ?? "http://eogk4s8.164.92.249.9.sslip.io"
+
 axios.defaults.withCredentials = true
