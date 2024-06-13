@@ -14,6 +14,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
-axios.defaults.baseURL = process.env.API_URL ?? "http://eogk4s8.164.92.249.9.sslip.io"
+axios.defaults.baseURL = process.env.API_URL ?? "https://eogk4s8.164.92.249.9.sslip.io:3001/api"
 
 axios.defaults.withCredentials = true
