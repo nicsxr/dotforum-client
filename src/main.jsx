@@ -15,6 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-axios.defaults.baseURL = process.env.API_URL ?? "https://eogk4s8.164.92.249.9.sslip.io:3001/api"
+axios.defaults.baseURL = process.env.API_URL ?? "https://api.dotforum.nikoloz.xyz:3001/api"
 
 axios.defaults.withCredentials = true
